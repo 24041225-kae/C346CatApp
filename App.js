@@ -10,6 +10,7 @@ const Quiz = () => {
     const [ans3, setAnswer3] = useState('Pick 1');
     const [ans4, setAnswer4] = useState('Pick 1');
     const [score, setScore] = useState(0);
+    const [showAnswer, setShowAnswer] = useState(false);
 
     const correctans1 = "Loafing";
     const correctans2 = "Survive";
@@ -24,6 +25,7 @@ const Quiz = () => {
     if (ans4 === correctans4) tempscore++;
 
     setScore(tempscore);
+    setShowAnswer(true);
 
         const msg =
             tempscore === 4
@@ -87,6 +89,9 @@ const Quiz = () => {
             >
                 <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Submit Answers</Text>
             </TouchableOpacity>
+            <Text style={{fontSize:20, fontWeight: "bold", textAlign: "center"}}>
+                {showAnswer} Your current score: {score} / 4
+            </Text>
 
         </ScrollView>
     );

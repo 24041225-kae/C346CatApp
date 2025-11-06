@@ -3,7 +3,7 @@ import {View, Text, Image} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Entypo from '@expo/vector-icons/Entypo';
 
-const Qn = ({question, selectedValue, onChange, options, poster, icon_colour, icon_name, icon_width}) => {
+const Qn = ({question, selectedValue, onChange, options, poster, icon_colour, icon_name}) => {
     return (
         <View style={{ marginVertical: 10 }}>
             <Text style={{fontWeight:'bold', fontSize:25, letterSpacing:-2, color:'black',marginLeft:10, marginBottom:10}}>
