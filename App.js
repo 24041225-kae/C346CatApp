@@ -1,8 +1,54 @@
 import React, {useState} from 'react';
-import {Text, ScrollView, Alert, TouchableOpacity} from 'react-native';
+import {Text, ScrollView, Alert, TouchableOpacity, StyleSheet, View} from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
 import Qn from './Question.js';
 
+const styles = StyleSheet.create({
+    title:{
+        borderWidth: 1,
+        fontSize: 32,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom:10,
+        width: '75%',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginTop:20,
+        backgroundColor: 'lavender'
+    },
+    qnbox:{
+        borderWidth: 1,
+        borderStyle: 'dotted',
+        marginBottom:20,
+    },
+    selectedBox: {
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderRadius: 5,
+        padding: 5,
+        alignSelf: 'center',
+        marginVertical: 5,
+        width: 100
+    },
+    submit:{
+        marginHorizontal: 130,
+        borderWidth: 0.5,
+        borderColor: 'lightpink',
+        justifyContent: 'center',
+        backgroundColor: "green",
+        padding: 10,
+        borderRadius: 10,
+        alignItems: "center",
+        marginTop: 20,
+    },
+    display:{
+        fontSize:20,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginBottom: 50,
+        marginTop: 30
+    }
+})
 
 const Quiz = () => {
     const [ans1, setAnswer1] = useState('Pick 1');
@@ -35,21 +81,29 @@ const Quiz = () => {
                     : "You got "+ tempscore + " / 4. You failed. Please try again!";
 
 
-        Alert.alert('Quiz Result', msg);
+                    Alert.alert('Quiz Result', msg);
+
+
 
 }
     return (
         <ScrollView style={{marginTop: 40}}>
-            <Text style={{fontSize: 32, fontWeight: 'bold', textAlign: 'center', marginBottom:10}}><Entypo name="bell" size={24} color="black" /> Cat Q U I Z <Entypo name="bell" size={24} color="black" /></Text>
-            <Qn
-                question="What position is this cat in?"
-                selectedValue={ans1}
-                onChange={setAnswer1}
-                options={["Loafing", "Lying down", "Sitting", "Standing"]}
-                poster="https://cats.com/wp-content/uploads/2022/05/cat-loaf-feature-compressed.jpg"
-                icon_colour="grey"
-                icon_name="blackboard"
-            />
+            <Text style={styles.title}><Entypo name="bell" size={24} color="black" /> Cat Q U I Z <Entypo name="bell" size={24} color="black" /></Text>
+            <View style={styles.qnbox}>
+                <Qn
+                    question="What position is this cat in?"
+                    selectedValue={ans1}
+                    onChange={setAnswer1}
+                    options={["Loafing", "Lying down", "Sitting", "Standing"]}
+                    poster="https://cats.com/wp-content/uploads/2022/05/cat-loaf-feature-compressed.jpg"
+                    icon_colour="grey"
+                    icon_name="blackboard"
+                />
+                <View style={styles.selectedBox}>
+                    <Text>{ans1}</Text>
+                </View>
+            </View>
+            <View style={styles.qnbox}>
             <Qn
                 question="Why do cats eat?"
                 selectedValue={ans2}
@@ -59,6 +113,11 @@ const Quiz = () => {
                 icon_colour="blue"
                 icon_name="browser"
             />
+                <View style={styles.selectedBox}>
+                    <Text>{ans2}</Text>
+                </View>
+            </View>
+            <View style={styles.qnbox}>
             <Qn
                 question="What is the cat doing?"
                 selectedValue={ans3}
@@ -68,6 +127,11 @@ const Quiz = () => {
                 icon_colour="purple"
                 icon_name="baidu"
             />
+                <View style={styles.selectedBox}>
+                    <Text>{ans3}</Text>
+                </View>
+            </View>
+            <View style={styles.qnbox}>
             <Qn
                 question="What is the age of this cat?"
                 selectedValue={ans4}
@@ -77,19 +141,18 @@ const Quiz = () => {
                 icon_colour="red"
                 icon_name="check"
             />
+                <View style={styles.selectedBox}>
+                    <Text>{ans4}</Text>
+                </View>
+            </View>
+
             <TouchableOpacity
                 onPress={checkAnswers}
-                style={{
-                    backgroundColor: "green",
-                    padding: 10,
-                    borderRadius: 10,
-                    alignItems: "center",
-                    marginTop: 20,
-                }}
+                style={styles.submit}
             >
                 <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Submit Answers</Text>
             </TouchableOpacity>
-            <Text style={{fontSize:20, fontWeight: "bold", textAlign: "center"}}>
+            <Text style={styles.display}>
                 {showAnswer} Your current score: {score} / 4
             </Text>
 
@@ -98,4 +161,3 @@ const Quiz = () => {
 };
 
 export default Quiz;
-
